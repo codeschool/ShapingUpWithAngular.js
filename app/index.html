@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS</title>
+    <link data-require="bootstrap-css" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link data-require="semantic-ui@*" data-semver="0.9.6" rel="stylesheet" href="https://raw.github.com/Semantic-Org/Semantic-UI/0.9.6/build/packaged/css/semantic.min.css" />
+    <script data-require="semantic-ui@*" data-semver="0.9.6" src="https://raw.github.com/Semantic-Org/Semantic-UI/0.9.6/build/packaged/javascript/semantic.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.2.x" src="http://code.angularjs.org/1.2.15/angular.js" data-semver="1.2.15"></script>
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="app.js"></script>
+    <script src="products.js"></script>
+  </head>
+
+  <body ng-controller="StoreController as store">
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">Flatlander Crafted Gems</h1>
+      <h2 class="text-center">– an Angular store –</h2>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in store.products | orderBy:'-price'">
+
+        <!-- $index Practice:  -->
+        <h3>Gem #{{$index + 1}}: {{product.name | uppercase}}<em class="pull-right">{{product.price | currency}}</em>
+        </h3>
+
+        <!-- Image Gallery  -->
+        <div ng-show="product.images.length" ng-controller="GalleryController as gallery">
+          <div class="img-wrap">
+            <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
+          </div>
+          <ul class="img-thumbnails clearfix">
+            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images" ng-click="gallery.currentImageChange($index)">
+              <img ng-src="{{image}}" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- Product Tabs  -->
+        <product-tabs></product-tabs>
+
+      </div>
+    </div>
+  </body>
+
+</html>

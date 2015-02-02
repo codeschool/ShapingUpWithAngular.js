@@ -1,0 +1,41 @@
+<div>
+  <!--  Product Reviews List -->
+  <ul>
+    <h4> Reviews </h4>
+    <li ng-repeat="review in product.reviews">
+
+      <blockquote>
+        <strong>{{review.stars}} Stars</strong>
+        {{review.body}}
+        <cite class="clearfix">—{{review.author}}  on {{review.createdOn | date}}</cite>
+      </blockquote>
+    </li>
+  </ul>
+
+  <!--  Review Form -->
+  <form name="reviewForm" role="form" ng-controller="ReviewController as reviews" ng-submit="reviews.addReview(product)">
+    <!--  Live Preview -->
+    <blockquote ng-show="reviews.review.stars">
+      <strong>{{reviews.review.stars}} Stars</strong>
+      {{reviews.review.body}}
+      <cite class="clearfix">—{{reviews.review.author}}</cite>
+    </blockquote>
+
+    <!--  Review Form -->
+    <h4>Submit a Review</h4>
+    <fieldset class="form-group">
+      <select ng-model="reviews.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+        <option value="">Rate the Product</option>
+      </select>
+    </fieldset>
+    <fieldset class="form-group">
+      <textarea ng-model="reviews.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+    </fieldset>
+    <fieldset class="form-group">
+      <input ng-model="reviews.review.author" type="email" class="form-control" placeholder="jimmyDean@sausage.com" title="Email" />
+    </fieldset>
+    <fieldset class="form-group">
+      <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+    </fieldset>
+  </form>
+</div>
