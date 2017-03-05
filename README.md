@@ -2,7 +2,7 @@
 
 [Code School](http://codeschool.com/) course on [Angular.js](https://angularjs.org/).
 
-## Setup
+## Setup ##
 
 This application is just a collection of static files. Feel free to clone this
 repository and open the [index.html](https://github.com/codeschool/ShapingUpWithAngular.js/blob/master/app/index.html) file in your browser.
